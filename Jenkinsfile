@@ -42,7 +42,7 @@ pipeline {
         stage('Publish') {
             steps {
                 script {                    
-                    nuget.publish(packageName: "IdentityServer3", version: "${Version}", pathToFile: "IdentityServer3.${Version}.nupkg")
+                    nuget.publish(packageName: "IdentityServer3", version: "${Version}", pathToFile: "distribution/IdentityServer3.${Version}.nupkg")
                 }
             }
         }
