@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2014, 2015 Dominick Baier, Brock Allen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,6 +37,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Text;
+using Microsoft.Owin.Security.DataProtection;
+using IDataProtector = IdentityServer3.Core.Configuration.IDataProtector;
 
 namespace IdentityServer3.Tests.Endpoints
 {
@@ -97,7 +99,7 @@ namespace IdentityServer3.Tests.Endpoints
 
                 if (ConfigureIdentityServerOptions != null) ConfigureIdentityServerOptions(options);
                 app.UseIdentityServer(options);
-
+                app.SetDataProtectionProvider(new NoDataProtectionProvider());
                 ticketFormatter = new TicketDataFormat(
                     new DataProtectorAdapter(protector, options.AuthenticationOptions.CookieOptions.Prefix + Constants.PartialSignInAuthenticationType));
             });
