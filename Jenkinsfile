@@ -9,8 +9,8 @@ pipeline {
         label 'dotnetframework'
     }
     environment {
-        MajorVersion = "3"
-        BuildFramework = "v4.6.1"
+        MajorVersion = "2.6.3"
+        BuildFramework = "v4.5"
         BuildConfiguration = "Release"
 		NUnitConsoleVersion = "3.11.1"
 		Version = versionNumber(MajorVersion, env.BUILD_NUMBER, env.BRANCH_NAME)
