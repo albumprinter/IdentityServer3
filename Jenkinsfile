@@ -23,12 +23,20 @@ pipeline {
         }   
         stage('Run Unit Tests') {
             steps {
-                sh "nuget install NUnit.Console -version ${NUnitConsoleVersion} -o packages && mono packages/NUnit.ConsoleRunner.${NUnitConsoleVersion}/tools/nunit3-console.exe src/**/bin/${BuildConfiguration}/*.Tests.dll --where 'cat != Integration && cat != DI'"
+                sh "mono source/packages/xunit.runner.console.2.0.0/tools/xunit.console.exe source/Tests/UnitTests/bin/Release/IdentityServer3.Tests.dll"
             }
         } 
+		stage('ILMerge') {
+			steps {
+				sh "mkdir distribution/lib/net45"
+				sh "mono source/packages/ILMerge.2.14.1208/tools/ILMerge.exe /targetplatform:v4 /internalize /allowDup /target:library /out:distribution/lib/net45/IdentityServer3.dll $input_dlls build\IdentityServer3.dll build\Autofac.dll build\Autofac.Integration.WebApi.dll build\IdentityModel.dll build\Microsoft.Owin.Cors.dll build\Microsoft.Owin.dll build\Microsoft.Owin.FileSystems.dll build\Microsoft.Owin.Security.Cookies.dll build\Microsoft.Owin.Security.dll build\Microsoft.Owin.StaticFiles.dll build\Newtonsoft.Json.dll build\System.IdentityModel.Tokens.Jwt.dll build\System.Net.Http.Formatting.dll build\System.Web.Cors.dll build\System.Web.Http.dll build\System.Web.Http.Owin.dll build\System.Web.Http.Tracing.dll"
+			}
+		}
         stage('Pack') {
             steps {
-                sh "nuget pack source/IdentityServer3.nuspec -Properties 'PackId=IdentityServer3;Version=${Version}'"
+				sh "cp source/IdentityServer3.nuspec distribution"
+				sh "cp build/IdentityServer3.xml distribution/lib/net45"
+                sh "nuget pack distribution/IdentityServer3.nuspec -BasePath distribution -OutputDirectory distribution -version $Version"
             }
         }
         stage('Publish') {
