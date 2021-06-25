@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-				sh "msbuild source\\IdentityServer3.sln /t:Build /p:TargetFrameworkVersion=${BuildFramework} /p:Configuration=${BuildConfiguration}" 
+				sh "msbuild source/IdentityServer3.sln /t:Build /p:TargetFrameworkVersion=${BuildFramework} /p:Configuration=${BuildConfiguration}" 
             }
         }   
         stage('Run Unit Tests') {
