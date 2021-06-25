@@ -29,7 +29,7 @@ pipeline {
 		stage('ILMerge') {
 			steps {
 				sh "mkdir distribution/lib/net45"
-				sh "mono source/packages/ILMerge.2.14.1208/tools/ILMerge.exe /targetplatform:v4 /internalize /allowDup /target:library /out:distribution/lib/net45/IdentityServer3.dll $input_dlls build\IdentityServer3.dll build\Autofac.dll build\Autofac.Integration.WebApi.dll build\IdentityModel.dll build\Microsoft.Owin.Cors.dll build\Microsoft.Owin.dll build\Microsoft.Owin.FileSystems.dll build\Microsoft.Owin.Security.Cookies.dll build\Microsoft.Owin.Security.dll build\Microsoft.Owin.StaticFiles.dll build\Newtonsoft.Json.dll build\System.IdentityModel.Tokens.Jwt.dll build\System.Net.Http.Formatting.dll build\System.Web.Cors.dll build\System.Web.Http.dll build\System.Web.Http.Owin.dll build\System.Web.Http.Tracing.dll"
+				sh "mono source/packages/ILMerge.2.14.1208/tools/ILMerge.exe /targetplatform:v4 /internalize /allowDup /target:library /out:distribution/lib/net45/IdentityServer3.dll $input_dlls build/IdentityServer3.dll build/Autofac.dll build/Autofac.Integration.WebApi.dll build/IdentityModel.dll build/Microsoft.Owin.Cors.dll build/Microsoft.Owin.dll build/Microsoft.Owin.FileSystems.dll build/Microsoft.Owin.Security.Cookies.dll build/Microsoft.Owin.Security.dll build/Microsoft.Owin.StaticFiles.dll build/Newtonsoft.Json.dll build/System.IdentityModel.Tokens.Jwt.dll build/System.Net.Http.Formatting.dll build/System.Web.Cors.dll build/System.Web.Http.dll build/System.Web.Http.Owin.dll build/System.Web.Http.Tracing.dll"
 			}
 		}
         stage('Pack') {
@@ -56,9 +56,9 @@ pipeline {
 
 
 def versionNumber(majorVersion, buildNumber, branchName) {
-    semantic_version = """$majorVersion.$buildNumber.${
-        branchName == 'master' ? '0' :
-                '0-' + branchName.replace(' ', '').replace('-', '').replace('_', '')
+    semantic_version = """$majorVersion.$buildNumber${
+        branchName == 'master' ? '' :
+                '.0-' + branchName.replace(' ', '').replace('-', '').replace('_', '')
                         .replace('.', '').replace('/', '').replace('\\', '').replace(':', '')
     }""".take(25)
     echo "generated version: $semantic_version"
