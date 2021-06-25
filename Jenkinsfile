@@ -29,7 +29,7 @@ pipeline {
 		stage('ILMerge') {
 			steps {
 				sh "mkdir -p distribution/lib/net45"
-				sh "mono source/packages/ILRepack.2.0.18/tools/ILRepack.exe /targetplatform:v4 /internalize /target:library /out:distribution/lib/net45/IdentityServer3.dll build/IdentityServer3.dll build/Autofac.dll build/Autofac.Integration.WebApi.dll build/IdentityModel.dll build/Microsoft.Owin.Cors.dll build/Microsoft.Owin.dll build/Microsoft.Owin.FileSystems.dll build/Microsoft.Owin.Security.Cookies.dll build/Microsoft.Owin.Security.dll build/Microsoft.Owin.StaticFiles.dll build/Newtonsoft.Json.dll build/System.IdentityModel.Tokens.Jwt.dll build/System.Net.Http.Formatting.dll build/System.Web.Cors.dll build/System.Web.Http.dll build/System.Web.Http.Owin.dll build/System.Web.Http.Tracing.dll"
+				sh "mono source/packages/ILRepack.2.0.18/tools/ILRepack.exe /targetplatform:v4 /internalize /lib:build /target:library /out:distribution/lib/net45/IdentityServer3.dll build/IdentityServer3.dll build/Autofac.dll build/Autofac.Integration.WebApi.dll build/IdentityModel.dll build/Microsoft.Owin.Cors.dll build/Microsoft.Owin.dll build/Microsoft.Owin.FileSystems.dll build/Microsoft.Owin.Security.Cookies.dll build/Microsoft.Owin.Security.dll build/Microsoft.Owin.StaticFiles.dll build/Newtonsoft.Json.dll build/System.IdentityModel.Tokens.Jwt.dll build/System.Net.Http.Formatting.dll build/System.Web.Cors.dll build/System.Web.Http.dll build/System.Web.Http.Owin.dll build/System.Web.Http.Tracing.dll"
 			}
 		}
         stage('Pack') {
