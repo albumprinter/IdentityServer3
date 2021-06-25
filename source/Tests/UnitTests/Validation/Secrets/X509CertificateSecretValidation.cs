@@ -22,7 +22,6 @@ using IdentityServer3.Core.Services.InMemory;
 using IdentityServer3.Core.Validation;
 using System;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xunit;
 
 namespace IdentityServer3.Tests.Validation.Secrets
@@ -34,7 +33,7 @@ namespace IdentityServer3.Tests.Validation.Secrets
         ISecretValidator _thumbprintValidator = new X509CertificateThumbprintSecretValidator();
         IClientStore _clients = new InMemoryClientStore(ClientValidationTestClients.Get());
 
-        [Fact, Ignore]
+        [Fact(Skip = "Fails on mono")]
         public async Task Valid_Certificate_Thumbprint()
         {
             var clientId = "certificate_valid";

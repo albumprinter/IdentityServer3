@@ -28,7 +28,6 @@ using System.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xunit;
 
 namespace IdentityServer3.Tests.Validation.Secrets
@@ -79,7 +78,7 @@ namespace IdentityServer3.Tests.Validation.Secrets
             return (int)(dateTime - new DateTime(1970, 1, 1)).TotalSeconds;
         }
 
-        [Fact, Ignore]
+        [Fact(Skip = "Fails on mono")]
         public async Task Valid_Certificate_Thumbprint()
         {
             var clientId = "certificate_valid";
