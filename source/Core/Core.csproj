@@ -151,7 +151,7 @@
     <Compile Include="Events\EndpointDetail.cs" />
     <Compile Include="Extensions\DateTimeOffsetHelper.cs" />
     <Compile Include="Extensions\DateTimeHelper.cs" />
-    <Compile Include="Configuration\Hosting\LastUserNameCookie.cs" />
+    <Compile Include="Configuration\Hosting\LastUsernameCookie.cs" />
     <Compile Include="Configuration\LoggingOptions.cs" />
     <Compile Include="Configuration\EndpointOptions.cs" />
     <Compile Include="Configuration\Hosting\SessionCookie.cs" />
@@ -385,7 +385,7 @@
     <Compile Include="Configuration\AppBuilderExtensions\UseHstsExtension.cs" />
     <Compile Include="Configuration\AppBuilderExtensions\UseIdentityServerExtension.cs" />
     <Compile Include="Configuration\AuthenticationOptions.cs" />
-    <Compile Include="Configuration\Hosting\AutofacConfig.cs" />
+    <Compile Include="Configuration\Hosting\AutoFacConfig.cs" />
     <Compile Include="Configuration\CookieOptions.cs" />
     <Compile Include="Configuration\Hosting\CorsPolicyProvider.cs" />
     <Compile Include="Models\RefreshToken.cs" />
