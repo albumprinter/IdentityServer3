@@ -96,7 +96,7 @@ namespace IdentityServer3.Tests.Validation.Secrets
             result.Success.Should().BeTrue();
         }
 
-        [Fact]
+        [Fact(Skip = "Fails on mono")]
         public async Task Valid_Certificate_X5c_Only()
         {
             var clientId = "certificate_valid";
